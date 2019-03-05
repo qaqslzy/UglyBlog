@@ -51,7 +51,7 @@ func DeleteEntry(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//TODO 查找某一用户写过的文章
+//查找某一用户写过的文章
 func UserEntry(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
 	page := query.Get("page")
