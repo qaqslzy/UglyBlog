@@ -1,0 +1,47 @@
+{{define "content"}}
+<div style="height: auto">
+{{range .Entries}}
+
+    <div class="mdui-card mdui-row mdui-hoverable" style="margin:2%;">
+
+        <!-- 卡片的标题和副标题 -->
+        <div class="mdui-card-primary" style="margin-left:2%;">
+            <div class="mdui-card-primary-title">{{.Title}}</div>
+            <div class="mdui-card-primary-subtitle">{{.UserName}}</div>
+        </div>
+
+        <!-- 卡片的内容 -->
+        <div class="mdui-card-content" style="margin-left:2%;">{{.Abstract}}</div>
+
+        <!-- 卡片的按钮 -->
+        <div class="mdui-card-actions mdui-col-md-2 mdui-col-offset-md-10">
+            <a href="/entry/read?id={{.Uuid}}" class="mdui-btn mdui-ripple" style="margin:2%;">see more</a>
+        </div>
+
+    </div>
+
+{{end}}
+</div>
+<div class="mdui-row-xs-3" style="align-items:Center;margin-top:5%;margin-bottom:3%;margin-left: 10%;margin-right: 10%;">
+    {{if .HasFont}}
+        <div class="mdui-col"> <a href="/?page={{.FontPage}}" class="mdui-btn mdui-btn-icon "><i class="mdui-icon material-icons">arrow_back</i></a>
+        </div>
+    {{else}}
+    <div class="mdui-col">
+    </div>
+    {{end}}
+    <div class="mdui-col mdui-text-center">
+        <p style="width:100%">{{.Page}}/{{.MaxPage}}</p>
+    </div>
+    {{if .HasNext}}
+        <div class="mdui-col"> <a href="/?page={{.NextPage}}" class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">arrow_forward</i></a>
+        </div>
+    {{end}}
+</div>
+
+{{if .User.Uuid}}
+    <a class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent" href="/newentry"><i class="mdui-icon material-icons">edit</i></a>
+{{end}}
+
+
+{{end}}

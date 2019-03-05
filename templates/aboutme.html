@@ -1,0 +1,66 @@
+{{define "content"}}
+
+    <link rel="stylesheet" href="/static/js/editor.md/css/editormd.preview.css" />
+
+    <h1>关于本人</h1>
+    <div class="mdui-typo" style="height:5vh;">
+        <a href="/user?id=9daa1818f3c84d0b75e5b48b9b9831c7">qaqsLiuWeiyi</a>
+    </div>
+    <div class="mdui-divider"></div>
+
+    <div id="md-view">
+<textarea>
+# AboutMe
+
+- 非常不起眼的一名不知名211大学大二在读学生
+- 熟悉Golang，Python，Java
+- WeChat: 576470092
+- Email : lzy@noqaqs.cn
+- GitHub: [github.com/qaqslzy](https://github.com/qaqslzy)
+- 👏欢迎给我介绍工作
+</textarea>
+    </div>
+
+    <div id="gitalk-container"></div>
+    <div style="margin-top: 5%;"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        const gitalk = new Gitalk({
+            clientID: '自行填写',
+            clientSecret: '自行填写',
+            repo: '自行填写',
+            owner: '自行填写',
+            admin: ['自行填写'],
+            id: "自行填写",      // Ensure uniqueness and length less than 50
+            distractionFreeMode: true  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="/static/js/editor.md/lib/marked.min.js"></script>
+    <script src="/static/js/editor.md/lib/prettify.min.js"></script>
+    <script src="/static/js/editor.md/lib/raphael.min.js"></script>
+    <script src="/static/js/editor.md/lib/underscore.min.js"></script>
+    <script src="/static/js/editor.md/lib/sequence-diagram.min.js"></script>
+    <script src="/static/js/editor.md/lib/flowchart.min.js"></script>
+    <script src="/static/js/editor.md/lib/jquery.flowchart.min.js"></script>
+    <script src="/static/js/editor.md/editormd.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            let mdView;
+
+            mdView = editormd.markdownToHTML("md-view", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+        });
+    </script>
+{{end}}

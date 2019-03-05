@@ -1,0 +1,88 @@
+{{define "navbar"}}
+<!-- 头 -->
+<header class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-theme">
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}"><i
+                    class="mdui-icon material-icons">menu</i></span>
+        <a href="/" class="mdui-typo-headline mdui-hidden-xs">UglyBlog</a>
+        <div class="mdui-toolbar-spacer"></div>
+        <div class="mc-login-btn mdui-btn mdui-btn-dense mdui-ripple mdui-ripple-white" mdui-dialog="{target: '#login'}">登录</div>
+        <div class="mc-register-btn mdui-btn mdui-btn-dense mdui-ripple mdui-ripple-white" mdui-dialog="{target: '#register'}">注册</div>
+    </div>
+</header>
+
+<!-- 抽屉 -->
+<div class="mdui-drawer mdui-drawer-close" id="main-drawer">
+    <ul class="mdui-list">
+        <li class="mdui-list-item mdui-ripple">
+            <a class="mdui-list-item-content" style="align-items:Center;" href="/">
+                <i class="mdui-list-item-icon mdui-icon material-icons" style="margin-right: 15%;" href="/">all_inclusive</i>
+                Home</a>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
+            <a class="mdui-list-item-content" style="align-items:Center;" href="/friend">
+                <i class="mdui-list-item-icon mdui-icon material-icons" style="margin-right: 15%;">directions_run</i>
+                Friendly Link</a>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
+            <a class="mdui-list-item-content" style="align-items:Center;" href="/aboutme">
+                <i class="mdui-list-item-icon mdui-icon material-icons" style="margin-right: 15%;">accessible</i>
+                About Me</a>
+        </li>
+    </ul>
+</div>
+<!-- 登陆 -->
+<div class="mdui-dialog" style="max-width: 448px;" id="login">
+    <div class="mdui-dialog-title mdui-color-teal" style="height:35%;">
+        <div class="mdui-typo-display-1" style="margin-top:20%;margin-left: 5%;">登录</div>
+    </div>
+    <form action="/login" method="post">
+        <div class="mdui-textfield mdui-textfield-floating-label" style="margin:5%">
+            <i class="mdui-icon material-icons">email</i>
+            <label class="mdui-textfield-label">Email</label>
+            <input name="email" class="mdui-textfield-input" type="email" />
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label" style="margin:5%">
+            <i class="mdui-icon material-icons">lock</i>
+            <label class="mdui-textfield-label">PassWord</label>
+            <input name="password" class="mdui-textfield-input" type="password" />
+        </div>
+        <div class="mdui-dialog-actions" style="height:10%;margin-right: 5%">
+            <button type="submit" class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-float-right">登录</button>
+        </div>
+    </form>
+    <div class="mdui-textfield mdui-textfield-floating-label" style="margin:5%">
+        <p></p>
+    </div>
+</div>
+<!-- 注册 -->
+<div class="mdui-dialog" style="max-width: 448px;" id="register">
+    <div class="mdui-dialog-title mdui-color-teal" style="height:35%;">
+        <div class="mdui-typo-display-1" style="margin-top:22%;margin-left: 5%;">注册</div>
+        <div class="mdui-typo-body-1" style="margin-top:5%;margin-left: 5%;">暂时没有密码重置功能，请切记密码！</div>
+    </div>
+    <form action="/signup" method="post">
+        <div class="mdui-textfield mdui-textfield-floating-label" style="margin-left:5%;margin-right:5%;margin-bottom: 3%">
+            <i class="mdui-icon material-icons">account_circle</i>
+            <label class="mdui-textfield-label">UserName</label>
+            <input name="name" class="mdui-textfield-input" type="text" />
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label" style="margin-left:5%;margin-right:5%;margin-bottom: 3%">
+            <i class="mdui-icon material-icons">email</i>
+            <label class="mdui-textfield-label">Email</label>
+            <input name="email" class="mdui-textfield-input" type="email" />
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label" style="margin-left:5%;margin-right:5%;margin-bottom: 3%">
+            <i class="mdui-icon material-icons">lock</i>
+            <label class="mdui-textfield-label">PassWord</label>
+            <input name="password" class="mdui-textfield-input" type="password" />
+        </div>
+        <div class="mdui-dialog-actions" style="height:10%;margin-right: 5%">
+            <button type="submit" class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-float-right">注册</button>
+        </div>
+    </form>
+    <div class="mdui-textfield mdui-textfield-floating-label" style="margin:2%">
+        <p></p>
+    </div>
+</div>
+{{end}}

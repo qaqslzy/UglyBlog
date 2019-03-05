@@ -1,0 +1,7 @@
+{
+  "Static"         :"public",
+  "Address"        :"127.0.0.1:8000",
+  "ReadTimeout"    : 10,
+  "WriteTimeout"   : 600,
+  "Version"        :"0.02"
+}

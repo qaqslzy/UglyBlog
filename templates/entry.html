@@ -1,0 +1,88 @@
+{{define "content"}}
+
+<link rel="stylesheet" href="/static/js/editor.md/css/editormd.preview.css" />
+
+
+<h1>{{.Entry.Title}}</h1>
+<div class="mdui-typo" style="height:5vh;">
+    <a href="/user?id={{.Entry.UserId}}">{{.Entry.UserName}}</a>
+</div>
+<div class="mdui-divider"></div>
+
+<div id="md-view">
+<textarea>
+{{.Entry.Body}}
+</textarea>
+</div>
+
+<div id="gitalk-container"></div>
+<div style="margin-top: 5%;"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        const gitalk = new Gitalk({
+            clientID: '自行填写',
+            clientSecret: '自行填写',
+            repo: '自行填写',
+            owner: '自行填写',
+            admin: ['自行填写'],
+            id: "{{.Entry.Uuid}}",      // Ensure uniqueness and length less than 50
+            distractionFreeMode: true  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+
+{{if .IsMaster}}
+    <div class="mdui-fab-wrapper" mdui-fab="{trigger: 'hover'}">
+        <button class="mdui-fab mdui-ripple mdui-color-theme-accent">
+            <!-- 默认显示的图标 -->
+            <i class="mdui-icon material-icons">add</i>
+
+            <!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
+            <i class="mdui-icon mdui-fab-opened material-icons">add</i>
+        </button>
+        <div class="mdui-fab-dial">
+            <a class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" href="/newentry?id={{.Entry.Uuid}}"><i class="mdui-icon material-icons">edit</i></a>
+            <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red" mdui-dialog="{target: '#DeleteDialog'}" ><i class="mdui-icon material-icons">delete</i></button>
+        </div>
+    </div>
+
+    <div class="mdui-dialog" id="DeleteDialog">
+        <div class="mdui-dialog-content">确定要删除该文章吗？</div>
+        <div class="mdui-dialog-actions">
+            <button class="mdui-btn mdui-ripple" mdui-dialog-close>不要</button>
+            <a class="mdui-btn mdui-ripple" href="/delete/entry?id={{.Entry.Uuid}}">删掉它</a>
+        </div>
+    </div>
+{{end}}
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+<script src="/static/js/editor.md/lib/marked.min.js"></script>
+<script src="/static/js/editor.md/lib/prettify.min.js"></script>
+<script src="/static/js/editor.md/lib/raphael.min.js"></script>
+<script src="/static/js/editor.md/lib/underscore.min.js"></script>
+<script src="/static/js/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="/static/js/editor.md/lib/flowchart.min.js"></script>
+<script src="/static/js/editor.md/lib/jquery.flowchart.min.js"></script>
+<script src="/static/js/editor.md/editormd.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        let mdView;
+
+        mdView = editormd.markdownToHTML("md-view", {
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+        });
+    });
+</script>
+
+{{end}}

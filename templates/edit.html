@@ -1,0 +1,59 @@
+{{define "content"}}
+<form action="/postentry" method="post">
+<div class="mdui-textfield" style="margin-bottom:1%;margin-left:5%;margin-right: 5%;">
+    <label class="mdui-textfield-label">文章标题</label>
+    <input name="title" class="mdui-textfield-input" value="{{.Entry.Title}}" autocomplete="off" type="text" required/>
+    <div class="mdui-textfield-error">你空你🐎呢</div>
+</div>
+<div class="mdui-textfield" style="margin-bottom:1%;margin-left: 5%;margin-right:5%;">
+    <label class="mdui-textfield-label">文章简介</label>
+    <textarea name="abstract" class="mdui-textfield-input" required>{{.Entry.Abstract}}</textarea>
+    <div class="mdui-textfield-error">给我🦀啊</div>
+</div>
+<input name="uuid" value="{{.Entry.Uuid}}" hidden />
+<div id="my-editormd">
+    <textarea name="body" id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none;">{{.Entry.Body}}</textarea>
+    <textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
+</div>
+
+<div class="mdui-textfield" style="margin-bottom:1%;margin-left: 5%;margin-right:5%;">
+    <label class="mdui-textfield-label">文章主题</label>
+    <textarea name="topic" class="mdui-textfield-input">{{.Entry.Topic}}</textarea>
+</div>
+<button type="submit" class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-float-right" style="margin-top:3%;margin-bottom:4%;">发布</button>
+</form>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.js"></script>
+<link rel="stylesheet" href="/static/js/editor.md/css/editormd.css" />
+<script src="/static/js/editor.md/editormd.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // You can custom Emoji's graphics files url path
+        editormd.emoji = {
+            path: "http://www.emoji-cheat-sheet.com/graphics/emojis/",
+            ext: ".png"
+        };
+
+        // Twitter Emoji (Twemoji)  graphics files url path
+        editormd.twemoji = {
+            path: "http://twemoji.maxcdn.com/72x72/",
+            ext: ".png"
+        };
+        editormd("my-editormd", {
+            width: "90%",
+            height: "80vh",
+            syncScrolling: "single",
+            path: "editor.md/lib/",
+            saveHTMLToTextarea: true,
+            tex: true,// 开启科学公式TeX语言支持，默认关闭
+            flowChart: true,//开启流程图支持，默认关闭
+            sequenceDiagram: true,//开启时序/序列图支持，默认关闭,
+            imageUpload: true,
+            emoji: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "https://sm.ms/api/upload/"
+        });
+    });
+</script>
+
+{{end}}
