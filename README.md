@@ -9,6 +9,7 @@
 - 驱动：mgo
 - net/http
 - 生成uuid: github.com/nu7hatch/gouuid(我用的时候魔改了它的代码把生成的uuid的-都删了。。。)
+- 评论: Gitalk
 
 # 一些问题
 1. 没有用MongoDB的id作为唯一主键，而是使用了自己生成的UUID。（我也不知道为什么，反正就是这样用了）
