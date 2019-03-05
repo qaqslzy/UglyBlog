@@ -8,7 +8,7 @@
 - 数据库：MongoDB
 - 驱动：mgo
 - net/http
-- 生成uuid: github.com/nu7hatch/gouuid(我用的时候魔改了它的代码把生成的uuid的-都删了。。。)
+- 生成uuid: [gouuid](https://github.com/nu7hatch/gouuid)(我用的时候魔改了它的代码把生成的uuid的-都删了。。。)
 - 评论: [Gitalk](https://gitalk.github.io/)
 
 # 一些问题
